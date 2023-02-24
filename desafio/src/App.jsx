@@ -1,19 +1,18 @@
 import NavBar from "./styles/components/navBar";
-// import Resume from "./styles/components/Resume";
-// import AboutUS from "./styles/components/AboutUs";
-// import Services from "./styles/components/Services";
-import "./styles/components/AboutUs.sass";
+import Resume from "./styles/components/Resume";
+import AboutUS from "./styles/components/AboutUs";
+import Services from "./styles/components/Services";
 
 function App() {
   return (
     <>
       <NavBar />
 
-      {/* <Resume />
+       <Resume />
 
-      <AboutUS />
+       <AboutUS />
 
-      <Services /> */}
+     <Services />
     </>
   );
 }

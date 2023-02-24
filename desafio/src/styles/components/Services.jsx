@@ -1,10 +1,9 @@
 import React from "react";
+import "../components/Services.sass"
 
 const Services = () => {
   return (
-    <div>
-      <h2>Serviços</h2>
-
+    <div className="container-services">
       <img src="#" alt="Seta pra esquerda" />
       <p>
         Webdesign. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
