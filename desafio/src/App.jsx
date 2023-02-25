@@ -8,11 +8,11 @@ function App() {
     <>
       <NavBar />
 
-       <Resume />
+      <Resume />
 
-       <AboutUS />
+      <AboutUS />
 
-     <Services />
+      <Services />
     </>
   );
 }
