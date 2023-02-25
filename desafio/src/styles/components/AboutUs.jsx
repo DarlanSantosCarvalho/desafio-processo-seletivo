@@ -4,6 +4,8 @@ import "../components/AboutUs.sass";
 
 const AboutUs = () => {
   const [data, setData] = useState([]);
+  const [activeTab, setActiveTab] = useState(0);
+  const tabs = ["missao", "visao", "valores"];
 
   useEffect(() => {
     axios
@@ -11,23 +13,43 @@ const AboutUs = () => {
       .then((response) => setData(response.data));
   }, []);
 
+  console.log(data)
+
   return (
     <div className="container-about">
-      <h2>Sobre nós</h2>
-
-      <div className="info">
-        <div className="topicos">
-          <h3 className="active">{data[0]?.label}</h3>
-          <h3>{data[1]?.label}</h3>
-          <h3>{data[2]?.label}</h3>
-        </div>
-        <p className="active">{data[0]?.description}</p>
-        <p className="unactive">{data[1]?.description}</p>
-        <p className="unactive">{data[2]?.description.replace(/'/g, "")}</p>
+      <div className="container-tab">
+        
+        <ul className="topicos">
+          {tabs.map((tab, index) => {
+            return (
+              <li key={index}>
+                <button classNameto="topico-info"
+                  onClick={() => setActiveTab(index)}
+                  className={`${activeTab === index ? "active" : ""}`}
+                >
+                  {tab}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+        {data.map((element, index) => {
+          return (
+            <div
+              key={index}
+              className={`${activeTab === index ? "active" : "unactive"}`}
+            >
+              <h1>{element.label}</h1>
+              {index === data.length - 1 ? (
+                <p dangerouslySetInnerHTML={{ __html: element.description }} />
+              ) : (
+                element.description
+              )}
+            </div>
+          );
+        })}
+            </div>
       </div>
-
-      <h2 className="services">Serviços</h2>
-    </div>
   );
 };
 
