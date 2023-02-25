@@ -1,8 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import Slider from "react-slick";
+import { useState, useEffect } from "react";
 import axios from "axios";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "../components/Services.sass";
 
-const Services = () => {
+export default function SimpleSlider() {
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -11,24 +23,20 @@ const Services = () => {
       .then((response) => setData(response.data));
   }, []);
 
-  console.log(data);
-
   return (
-    <div className="container-services">
-      <img src="#" alt="Seta pra esquerda" /> 
-
-      <div className="footer">
-          <h3>{`${data[0]?.title}.`}</h3>
+    <Slider className="container-services" {...settings}>
+        <div className="text 1">
+          <h3 className="h3-carousel">{data[0]?.title}</h3>
           <p>{data[0]?.text}</p>
-          <h3 className="unactive">{`${data[1]?.title}.`}</h3>
-          <p className="unactive">{data[1]?.text}</p>
-          <h3 className="unactive">{`${data[2]?.title}.`}</h3>
-          <p className="unactive">{data[2]?.text}</p>
-      </div>
-
-      <img src="#" alt="Seta pra direita" />
-    </div>
+        </div>
+        <div className="text 2">
+          <h3 className="h3-carousel">{data[1]?.title}</h3>
+          <p>{data[1]?.text}</p>
+        </div>
+        <div className="text 3">
+          <h3 className="h3-carousel">{data[2]?.title}</h3>
+          <p>{data[2]?.text}</p>
+        </div>
+    </Slider>
   );
-};
-
-export default Services;
+}
